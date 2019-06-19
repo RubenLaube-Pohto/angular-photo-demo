@@ -1,0 +1,8 @@
+.photoViewer {
+    max-width: 600px + 2 * 16px;
+    margin: auto;
+
+    &--content {
+        margin: 16px;
+    }
+}

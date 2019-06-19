@@ -1,0 +1,12 @@
+.photoBrowser {
+    height: 100%;
+
+    &--thumbnail {
+        display: inline-block;
+        width: 25%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
