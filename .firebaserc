@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "photo-demo-ca951": {
+      "hosting": {
+        "photo-demo": [
+          "photo-demo-ca951"
+        ]
+      }
+    }
+  }
+}
