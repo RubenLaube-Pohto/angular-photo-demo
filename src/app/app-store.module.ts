@@ -5,10 +5,13 @@ import { EntityServices, EntityDataModule, EntityMetadataMap, DefaultDataService
 
 import { PhotoService } from './services/photo/photo.service';
 
-const entityMetadata: EntityMetadataMap = {
-    Photo: { sortComparer: (a, b) => a.id - b.id },
+export function sortById(a, b) {
+    return a.id - b.id;
+}
+export const entityMetadata: EntityMetadataMap = {
+    Photo: { sortComparer: sortById },
 };
-const entityConfig = {
+export const entityConfig = {
     entityMetadata,
 };
 const API_ROOT = 'https://jsonplaceholder.typicode.com';
