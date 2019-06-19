@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { PhotoService } from '../services/photo/photo.service';
 import { Photo } from 'src/models/photo.model';
 
 @Component({
@@ -11,14 +8,13 @@ import { Photo } from 'src/models/photo.model';
     styleUrls: ['./photo-viewer.component.scss'],
 })
 export class PhotoViewerComponent implements OnInit {
-    photoId$: Observable<string>;
-    selectedPhoto$: Observable<Photo>;
+    photo: Photo;
 
-    constructor(private route: ActivatedRoute, private photoService: PhotoService) {}
+    constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.photoId$ = this.route.paramMap.pipe(map(params => params.get('id')));
-        this.selectedPhoto$ = this.photoId$.pipe(switchMap(photoId => this.photoService.getByKey(photoId)));
-        this.selectedPhoto$.subscribe(console.log);
+        this.route.data.subscribe((data: { photo: Photo }) => {
+            this.photo = data.photo;
+        });
     }
 }
