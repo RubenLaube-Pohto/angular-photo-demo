@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     {
+        path: 'albums',
+        loadChildren: () => import('./album/album.module').then(mod => mod.AlbumModule),
+    },
+    {
         path: 'photos',
         pathMatch: 'full', // Full match to open photo browser instead of a single view
         loadChildren: () => import('./photo-browser/photo-browser.module').then(mod => mod.PhotoBrowserModule),
@@ -18,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' })],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}
