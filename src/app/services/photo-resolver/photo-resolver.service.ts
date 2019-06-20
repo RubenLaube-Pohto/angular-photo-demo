@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY, throwError } from 'rxjs';
-import { first, mergeMap, catchError } from 'rxjs/operators';
+import { first, mergeMap, catchError, map } from 'rxjs/operators';
 
 import { PhotoService } from '../photo/photo.service';
 import { Photo } from 'src/models/photo.model';
@@ -14,8 +14,10 @@ export class PhotoResolverService implements Resolve<Photo> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Photo | Observable<Photo> | Promise<Photo> {
         const id = route.paramMap.get('id');
+        const storeEntity = this.photoService.entityMap$.pipe(map(entityMap => entityMap[id]));
+        const entity = storeEntity.pipe(mergeMap(e => (e ? of(e) : this.photoService.getByKey(id))));
 
-        return this.photoService.getByKey(id).pipe(
+        return entity.pipe(
             first(),
             mergeMap(photo => {
                 return photo ? of(photo) : throwError('Photo not found.');

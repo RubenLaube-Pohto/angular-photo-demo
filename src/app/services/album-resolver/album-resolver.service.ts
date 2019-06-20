@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable, of, EMPTY, throwError } from 'rxjs';
-import { first, mergeMap, catchError } from 'rxjs/operators';
+import { first, mergeMap, catchError, map } from 'rxjs/operators';
 
 import { Album } from 'src/models';
 import { AlbumService } from '../album/album.service';
@@ -10,12 +10,14 @@ import { AlbumService } from '../album/album.service';
     providedIn: 'root',
 })
 export class AlbumResolverService implements Resolve<Album> {
-    constructor(private album: AlbumService, private router: Router) {}
+    constructor(private albumService: AlbumService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Album | Observable<Album> | Promise<Album> {
         const id = route.paramMap.get('id');
+        const storeEntity = this.albumService.entityMap$.pipe(map(entityMap => entityMap[id]));
+        const entity = storeEntity.pipe(mergeMap(e => (e ? of(e) : this.albumService.getByKey(id))));
 
-        return this.album.getByKey(id).pipe(
+        return entity.pipe(
             first(),
             mergeMap(photo => {
                 return photo ? of(photo) : throwError('Album not found.');
