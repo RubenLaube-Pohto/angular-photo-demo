@@ -19,8 +19,8 @@ export class AlbumResolverService implements Resolve<Album> {
 
         return entity.pipe(
             first(),
-            mergeMap(photo => {
-                return photo ? of(photo) : throwError('Album not found.');
+            mergeMap(album => {
+                return album ? of(album) : throwError('Album not found.');
             }),
             catchError(err => {
                 this.router.navigate(['albums']);
