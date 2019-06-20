@@ -1,4 +1,9 @@
-<virtual-scroller #scroll [items]="photos$ | async" (vsEnd)="loadNext($event)" class="photoBrowser">
+<virtual-scroller
+    #scroll
+    [items]="photos$ | async"
+    (vsEnd)="lastVisibleIndex$.next($event.endIndex)"
+    class="photoBrowser"
+>
     <div
         *ngFor="let photo of scroll.viewPortItems; trackBy: trackById"
         (click)="openImage(photo.id)"
