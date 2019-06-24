@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
+import { DefaultDataServiceConfig, EntityDataModule, EntityMetadataMap, EntityServices } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityServices, EntityDataModule, EntityMetadataMap, DefaultDataServiceConfig } from '@ngrx/data';
-
-import { PhotoService } from './services/photo/photo.service';
+import { StoreModule } from '@ngrx/store';
 import { AlbumService } from './services/album/album.service';
+import { PhotoService } from './services/photo/photo.service';
+import { UserService } from './services/user/user.service';
 
 export function sortById(a, b) {
     return a.id - b.id;
@@ -12,6 +12,7 @@ export function sortById(a, b) {
 export const entityMetadata: EntityMetadataMap = {
     Photo: { sortComparer: sortById },
     Album: { sortComparer: sortById },
+    User: { sortComparer: sortById },
 };
 export const entityConfig = {
     entityMetadata,
@@ -38,13 +39,22 @@ const API_ROOT = 'https://jsonplaceholder.typicode.com';
                         entityResourceUrl: API_ROOT + '/albums/',
                         collectionResourceUrl: API_ROOT + '/albums/',
                     },
+                    User: {
+                        entityResourceUrl: API_ROOT + '/users/',
+                        collectionResourceUrl: API_ROOT + '/users/',
+                    },
                 },
             },
         },
     ],
 })
 export class AppStoreModule {
-    constructor(entityServices: EntityServices, photoService: PhotoService, albumService: AlbumService) {
-        entityServices.registerEntityCollectionServices([photoService, albumService]);
+    constructor(
+        entityServices: EntityServices,
+        photoService: PhotoService,
+        albumService: AlbumService,
+        userService: UserService
+    ) {
+        entityServices.registerEntityCollectionServices([photoService, albumService, userService]);
     }
 }
