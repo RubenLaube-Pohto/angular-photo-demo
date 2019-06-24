@@ -7,6 +7,7 @@ import { Photo } from 'src/models/photo.model';
 })
 export class PhotoService extends EntityCollectionServiceBase<Photo> {
     private currentPage = 0;
+    private readonly LIMIT = 100;
 
     constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
         super('Photo', serviceElementsFactory);
@@ -14,6 +15,10 @@ export class PhotoService extends EntityCollectionServiceBase<Photo> {
 
     loadNext() {
         this.currentPage++;
-        return this.getWithQuery({ _page: this.currentPage.toString(), _limit: '50' });
+        return this.getWithQuery({ _page: '' + this.currentPage, _limit: '' + this.LIMIT });
+    }
+
+    getAlbumPhotos(albumId: number) {
+        return this.getWithQuery({ albumId: '' + albumId });
     }
 }
