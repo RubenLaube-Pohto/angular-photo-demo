@@ -11,6 +11,10 @@ const routes: Routes = [
         loadChildren: () => import('./photo/photo.module').then(mod => mod.PhotoModule),
     },
     {
+        path: 'users',
+        loadChildren: () => import('./user/user.module').then(mod => mod.UserModule),
+    },
+    {
         path: '**',
         redirectTo: 'photos',
     },
