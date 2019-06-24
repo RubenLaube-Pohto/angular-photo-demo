@@ -1,3 +1,5 @@
-<p>
-  user-browser works!
-</p>
+<app-data-list
+    displayProp="name"
+    [entities]="users$ | async"
+    (selectEntity)="router.navigate(['users', $event.id])"
+></app-data-list>

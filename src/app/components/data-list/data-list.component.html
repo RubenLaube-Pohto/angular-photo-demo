@@ -1,0 +1,6 @@
+<mat-nav-list>
+    <a mat-list-item *ngFor="let entity of entities" (click)="selectEntity.emit(entity)">
+        <mat-icon *ngIf="icon" matListIcon>{{ icon }}</mat-icon>
+        <p matLine>{{ entity.id }}. {{ entity[displayProp] }}</p>
+    </a>
+</mat-nav-list>

@@ -1,6 +1,5 @@
-<mat-nav-list>
-    <a mat-list-item *ngFor="let album of albums$ | async" (click)="router.navigate(['albums', album.id])"
-        ><mat-icon matListIcon>folder</mat-icon>
-        <p matLine>{{ album.id }}. {{ album.title }}</p>
-    </a>
-</mat-nav-list>
+<app-data-list
+    displayProp="title"
+    [entities]="albums$ | async"
+    (selectEntity)="router.navigate(['albums', $event.id])"
+></app-data-list>
