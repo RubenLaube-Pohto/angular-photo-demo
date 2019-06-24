@@ -1,3 +1,1 @@
-<p>
-  album-viewer works!
-</p>
+<app-image-grid [photos]="photos$ | async" (selectPhoto)="openImage($event.id)"></app-image-grid>

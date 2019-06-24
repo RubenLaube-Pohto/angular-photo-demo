@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { PhotoBrowserRoutingModule } from './photo-browser-routing.module';
 import { PhotoBrowserComponent } from './photo-browser.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
     declarations: [PhotoBrowserComponent],
@@ -17,6 +18,7 @@ import { PhotoBrowserComponent } from './photo-browser.component';
         ScrollingModule,
         VirtualScrollerModule,
         FlexLayoutModule,
+        ComponentsModule,
     ],
 })
 export class PhotoBrowserModule {}

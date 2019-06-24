@@ -1,0 +1,20 @@
+/*
+    Component selector required at top level or styles could bleed.
+    Need to be able to style container element because of virtual scroll.
+*/
+app-image-grid {
+    display: block;
+    height: 100%;
+
+    .imageGrid {
+        &--thumbnail {
+            display: inline-block;
+            width: 25%;
+            max-width: 150px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

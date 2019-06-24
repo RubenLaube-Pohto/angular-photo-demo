@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject, combineLatest } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-
-import { PhotoService } from '../services/photo/photo.service';
 import { Photo } from 'src/models/photo.model';
+import { PhotoService } from '../services/photo/photo.service';
 
 @Component({
     selector: 'app-photo-browser',
@@ -58,9 +57,5 @@ export class PhotoBrowserComponent implements OnInit, OnDestroy {
 
     openImage(imgId: number) {
         this.router.navigate(['photos', imgId]);
-    }
-
-    trackById(index: number, photo: Photo) {
-        return photo.id;
     }
 }
