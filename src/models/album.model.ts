@@ -1,5 +1,6 @@
-export interface Album {
+import { Entity } from './entity.model';
+
+export interface Album extends Entity {
     userId: number;
-    id: number;
     title: string;
 }

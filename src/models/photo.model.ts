@@ -1,6 +1,7 @@
-export interface Photo {
+import { Entity } from './entity.model';
+
+export interface Photo extends Entity {
     albumId: number;
-    id: number;
     title: string;
     url: string;
     thumbnailUrl: string;
