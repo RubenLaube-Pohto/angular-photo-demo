@@ -9,7 +9,7 @@ const routes: Routes = [
         path: ':id',
         component: UserViewerComponent,
         resolve: {
-            photo: UserResolverService,
+            user: UserResolverService,
         },
     },
     {
