@@ -1,3 +1,5 @@
-<p>
-  user-viewer works!
-</p>
+<div class="userViewer">
+    <mat-card class="userViewer--card">
+        <app-user-form [user]="user$ | async"></app-user-form>
+    </mat-card>
+</div>

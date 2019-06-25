@@ -1,0 +1,58 @@
+<form fxLayout="rows wrap" [formGroup]="userForm">
+    <mat-form-field fxFlex="100">
+        <input matInput type="text" placeholder="Name" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+        <input matInput type="text" placeholder="Username" formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+        <input matInput type="text" placeholder="Email" formControlName="email" />
+    </mat-form-field>
+
+    <!-- ADDRESS -->
+    <div formGroupName="address" fxFlex="100" fxLayout="rows wrap" fxLayoutGap="8px grid" class="userForm--group">
+        <h3 fxFlex="100" class="userForm--groupTitle">Address</h3>
+        <mat-form-field fxFlex="50" fxFlex.lt-sm="100">
+            <input matInput type="text" placeholder="Street" formControlName="street" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" fxFlex.lt-sm="100">
+            <input matInput type="text" placeholder="Suite" formControlName="suite" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" fxFlex.lt-sm="100">
+            <input matInput type="text" placeholder="City" formControlName="city" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" fxFlex.lt-sm="100">
+            <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" />
+        </mat-form-field>
+    </div>
+
+    <mat-form-field fxFlex="100">
+        <input matInput type="text" placeholder="Phone" formControlName="phone" />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+        <input matInput type="text" placeholder="Website" formControlName="website" />
+    </mat-form-field>
+
+    <!-- COMPANY -->
+    <div formGroupName="company" fxFlex="100" fxLayout="rows wrap" class="userForm--group">
+        <h3 fxFlex="100" class="userForm--groupTitle">Company</h3>
+
+        <mat-form-field fxFlex="100">
+            <input matInput type="text" placeholder="Name" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <textarea matInput type="text" placeholder="Catch Phrase" formControlName="catchPhrase"></textarea>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <textarea matInput type="text" placeholder="BS" formControlName="bs"></textarea>
+        </mat-form-field>
+    </div>
+</form>
