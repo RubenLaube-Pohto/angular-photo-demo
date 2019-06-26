@@ -1,6 +1,12 @@
 <div class="mainContainer" [class.mobileMode]="mobileQuery.matches">
     <mat-toolbar color="primary" class="mainContainer--toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="mainContainer--toolbarTitle">
+            <ng-container *ngFor="let segment of path$ | async">
+                <span>{{ segment | titlecase }}</span>
+                <span>{{ ' / ' }}</span>
+            </ng-container>
+        </h1>
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenavContainer">

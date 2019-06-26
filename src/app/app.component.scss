@@ -15,6 +15,13 @@
         margin-top: 0px;
     }
 
+    &--toolbarTitle {
+        :last-child {
+            /* Hides last '/' of shown path */
+            display: none;
+        }
+    }
+
     &.mobileMode {
         .mainContainer--toolbar {
             position: fixed;
