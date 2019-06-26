@@ -2,6 +2,7 @@
     #scroll
     [items]="photos"
     [parentScroll]="elRef.nativeElement"
+    [scrollThrottlingTime]="150"
     (vsEnd)="scrollEnd.emit($event)"
     class="imageGrid"
 >

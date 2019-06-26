@@ -23,8 +23,6 @@ export class PhotoBrowserComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.photos$ = this.photoService.entities$;
         this.count$ = this.photoService.count$;
-        // debugging
-        this.photos$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(p => console.log('store photos', p));
         this.initLoadMore();
     }
 
@@ -41,11 +39,13 @@ export class PhotoBrowserComponent implements OnInit, OnDestroy {
             )
             .subscribe({ next: () => this.photoService.loadNext() });
 
-        combineLatest(this.count$, this.lastVisibleIndex$)
+        combineLatest(this.count$, this.lastVisibleIndex$, this.photoService.loading$)
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe({
-                next: ([count, lastVisibleIndex]) => {
-                    if (lastVisibleIndex === count - 1) loadMore.next();
+                next: ([count, lastVisibleIndex, loading]) => {
+                    if (!loading && lastVisibleIndex === count - 1) {
+                        loadMore.next();
+                    }
                 },
             });
     }
