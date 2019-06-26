@@ -6,11 +6,13 @@
     (vsEnd)="scrollEnd.emit($event)"
     class="imageGrid"
 >
-    <div
-        *ngFor="let photo of scroll.viewPortItems; trackBy: trackById"
-        (click)="selectPhoto.emit(photo)"
-        class="imageGrid--thumbnail"
-    >
-        <img [src]="photo.thumbnailUrl" [alt]="photo.title" />
+    <div #container class="imageGrid--container">
+        <div
+            *ngFor="let photo of scroll.viewPortItems; trackBy: trackById"
+            (click)="selectPhoto.emit(photo)"
+            class="imageGrid--thumbnail"
+        >
+            <img [src]="photo.thumbnailUrl" [alt]="photo.title" />
+        </div>
     </div>
 </virtual-scroller>
